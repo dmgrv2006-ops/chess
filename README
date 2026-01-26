@@ -30,8 +30,6 @@ A command-line chess game written in Java with full rule implementation.
 
 ## Known limitations
 - doesn't detect threefold repetition
-- doesn't detect 50-move rule
-- doesn't detect insufficient material
 
 ## Future Improvements
 - Chess engine with minimax/alpha-beta pruning
