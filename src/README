@@ -1,0 +1,52 @@
+# Chess Game
+
+A command-line chess game written in Java with full rule implementation.
+
+## Features
+- All piece movements (pawns, knights, bishops, rooks, queens, kings)
+- Special moves: castling, en passant, pawn promotion
+- Check, checkmate, and stalemate detection
+- Move validation (prevents illegal moves including leaving king in check)
+- Full undo/redo support with castle rights restoration
+- Move history tracking
+
+## How to Run
+1. Run: `java Main`
+2. Enter moves in algebraic notation (e.g., `move e2 e4`)
+
+## Commands
+- `move [from] [to]` - Move a piece (e.g., `move e2 e4`)
+  - For pawn promotion, you'll be prompted to choose a piece (knight/bishop/rook/queen)
+- `show` - Display the current board
+- `showMoves` - List all legal moves for the current player
+- `undo` - Undo the last move
+- `redo` - Redo a previously undone move
+- `quit` - Exit the game
+
+## Technical Details
+- Board representation: 2D integer array with signed values for piece colors
+- Move generation: Pseudo-legal moves filtered by check validation
+- Algorithm: Iterates through all pieces to generate candidate moves, applies each temporarily to verify king safety
+
+## Known limitations
+- doesn't detect threefold repetition
+- doesn't detect 50-move rule
+- doesn't detect insufficient material
+
+## Future Improvements
+- Chess engine with minimax/alpha-beta pruning
+- Opening book integration
+- Bitboard representation for performance
+- GUI using JavaFX
+- Convert 2D board array to 1D array for engine performance
+- Use ArrayList instead of fixed-size Move arrays
+- Use bitmask for castle rights instead of 4 separate booleans
+- Implement proper equals() and hashCode() for Move class
+- Return defensive copy of board in getChessBoard()
+- Extract magic numbers to named constants (rook castle columns, square counts)
+
+## What I Learned
+- Game state management and move validation
+- Working with complex rule sets
+- Debugging edge cases in special moves
+- Balancing code readability with performance considerations
