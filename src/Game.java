@@ -689,6 +689,7 @@ public class Game {
         }else
             return false;
     }
+
     public boolean isInsufficientMaterialDraw() {
         int pieceCount = 0;
         int whiteKnights = 0;
