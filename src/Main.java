@@ -128,9 +128,10 @@ public class Main {
                 else if(chess.is50MoveDraw()){
                     System.out.println(FIFTY_DRAW_MSG);
                     chess.setGameOver();
-                }else if(chess.isInsufficientMaterialDraw())
+                }else if(chess.isInsufficientMaterialDraw()){
                     System.out.println(MATERIAL_DRAW_MSG);
                     chess.setGameOver();
+                }
             }
         }
     }
