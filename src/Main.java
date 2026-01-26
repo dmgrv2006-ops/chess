@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Main {
+public class Main{
     private static final String QUIT_COMMAND = "quit";
     private static final String SHOW_COMMAND = "show";
     private static final String MOVE_COMMAND = "move";
