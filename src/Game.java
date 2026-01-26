@@ -680,4 +680,53 @@ public class Game {
     public MoveIterator moveIterator() {
         return new MoveIterator(legalMoves, legalMovesSize);
     }
+    public boolean is50MoveDraw(){
+        if(pastMovesSize >100){
+            int i = pastMovesSize - 1;
+            while (i>pastMovesSize-100 && pastMoves[i].getMovingPiece() != PAWN &&
+            pastMoves[i].getCapturedPiece() == EMPTY){i--;}
+            return i == pastMovesSize-100;
+        }else
+            return false;
+    }
+    public boolean isInsufficientMaterialDraw() {
+        int pieceCount = 0;
+        int whiteKnights = 0;
+        int blackKnights = 0;
+        int whiteBishops = 0;
+        int blackBishops = 0;
+        boolean hasOtherPieces = false;
+        for (int row = 0; row < CHESS_BOARD_ROWS; row++) {
+            for (int col = 0; col < CHESS_BOARD_COLS; col++) {
+                if (chessBoard[row][col] != EMPTY &&
+                        chessBoard[row][col] != WHITE_KING && chessBoard[row][col] != BLACK_KING) {
+                    pieceCount++;
+                    switch (chessBoard[row][col]) {
+                        case WHITE_KNIGHT -> whiteKnights++;
+                        case BLACK_KNIGHT -> blackKnights++;
+                        case WHITE_BISHOP -> whiteBishops++;
+                        case BLACK_BISHOP -> blackBishops++;
+                        default -> hasOtherPieces = true;
+                    }
+                }
+            }
+        }
+        return (pieceCount < 2 && !hasOtherPieces)
+                || isOpposingKnightAndBishopDraw(whiteKnights, blackKnights,whiteBishops,blackBishops, pieceCount)
+                || isTwoKnightsDraw(whiteKnights, blackKnights, pieceCount);
+    }
+
+    private boolean isTwoKnightsDraw(int whiteKnights, int blackKnights, int pieceCount) {
+        if(pieceCount == 2)
+            return whiteKnights == 2 || blackKnights == 2;
+        return false;
+    }
+
+    private boolean isOpposingKnightAndBishopDraw(int whiteKnights,int blackKnights, int whiteBishops,
+                                                  int blackBishops,int pieceCount) {
+        if(pieceCount ==2)
+            return (whiteKnights == 1 && blackBishops == 1) || (blackKnights == 1 && whiteBishops == 1);
+        else
+            return false;
+    }
 }

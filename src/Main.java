@@ -22,6 +22,8 @@ public class Main {
     private static final String COLS_LETTERS_MSG = "  a b c d e f g h";
     private static final String CHECKMATE_MSG = "Checkmate";
     private static final String STALEMATE_MSG = "Stalemate";
+    private static final String FIFTY_DRAW_MSG = "50-move draw";
+    private static final String MATERIAL_DRAW_MSG = "Insufficient material draw";
     private static final String KNIGHT_WORD = "knight";
     private static final String BISHOP_WORD = "bishop";
     private static final String ROOK_WORD = "rook";
@@ -123,6 +125,12 @@ public class Main {
                     System.out.println(STALEMATE_MSG);
                     chess.setGameOver();
                 }
+                else if(chess.is50MoveDraw()){
+                    System.out.println(FIFTY_DRAW_MSG);
+                    chess.setGameOver();
+                }else if(chess.isInsufficientMaterialDraw())
+                    System.out.println(MATERIAL_DRAW_MSG);
+                    chess.setGameOver();
             }
         }
     }
